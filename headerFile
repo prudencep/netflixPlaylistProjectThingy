@@ -1,0 +1,23 @@
+#ifndef STOREMOVIES_H
+#define STOREMOVIES_H
+
+class video
+{
+public:
+	video(); //default constructor
+	video(string); //nondefault constructor
+	void videoPlaylist(string, string, string, string, int, string, int);
+	string getTitle()const;
+	string getRating()const;
+	string getRatingLevel()const;
+	string getRatingDescription()const;
+	int getReleaseYear()const;
+	string getUserRating()const;
+	int getUserRatingSize()const;
+
+private:
+	string title, rating, ratingLevel, ratingDescription, userRating;
+	int releaseYear, userRatingSize;
+};
+
+#endif
