@@ -1,0 +1,61 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+#include "storeMovies.h"
+
+video::video()
+{
+	//default constructor
+}
+
+video::video(string name)
+{
+	title = name; //nondefault constructor
+}
+
+void video::videoPlaylist(string movieTitle, string movieRating, string level,
+	string description, int year, string uRating, int ratingSize)
+{//mutator to store variables
+	title = movieTitle;
+	rating = movieRating;
+	ratingLevel = level;
+	ratingDescription = description;
+	releaseYear = year;
+	userRating = uRating;
+	userRatingSize = ratingSize;
+}
+
+string video::getTitle()const
+{//accessor to title
+	return title;
+}
+
+string video::getRating()const
+{//accessor to rating
+	return rating;
+}
+
+string video::getRatingLevel()const
+{//accessor to rating level
+	return ratingLevel;
+}
+
+string video::getRatingDescription()const
+{//accessor to rating description
+	return ratingDescription;
+}
+int video::getReleaseYear()const
+{//accessor to release year
+	return releaseYear;
+}
+
+string video::getUserRating()const
+{//accessor to user rating
+	return userRating;
+}
+
+int video::getUserRatingSize()const
+{//accessor to to user rating size
+	return userRatingSize;
+}
