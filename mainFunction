@@ -1,0 +1,73 @@
+#include <iostream>
+#include <string>
+#include <ctime>
+#include <vector>
+#include <cstdlib>
+#include <fstream>
+using namespace std;
+
+#include "storeMovies.h"
+
+void removeQuotes(string);
+
+string content[7];
+
+int main()
+{
+	srand(time(0));//seed time for random numbers
+	ifstream myFile;
+	myFile.open("Netlix Shows.csv");
+
+	string line;
+	vector<video> myPlaylist(1001);
+
+	getline(myFile, line);
+
+	for (int i = 1; i < 1001; i++) 
+	{
+		getline(myFile, line);
+		removeQuotes(line);
+		myPlaylist[i].videoPlaylist(content[0], content[1], content[2], content[3], stoi(content[4]), content[5], stoi(content[6]));
+		cout << "Title: " << myPlaylist[i].getTitle() << endl;
+		cout << "Rating: " << myPlaylist[i].getRating() << endl;
+		cout << "Rating Level: " << myPlaylist[i].getRatingLevel() << endl;
+		cout << "Rating Description: " << myPlaylist[i].getRatingDescription() << endl;
+		cout << "Release Year: " << myPlaylist[i].getReleaseYear() << endl;
+		cout << "User Rating Score: " << myPlaylist[i].getUserRating() << endl;
+		cout << "User Rating Size: " << myPlaylist[i].getUserRatingSize() << endl;
+		cout << "****************************************" << endl;
+	}
+
+	return 0;
+}
+
+void removeQuotes(string line) //function to extract the content from each line
+{ 
+	for (int i = 0; i < 7; i++) 
+	{ 
+		content[i] = "";//empty the headings array anytime function is called
+	}
+
+	int j = 0;
+
+	for (int i = 0; i < line.length(); i++)//read every character in the line
+	{ 
+		if (line[i] == '"') 
+		{
+			i++; //go to the next character
+			while (line[i] != '"') //keep on reading in till next quotation mark
+			{
+				content[j] += line[i];
+				i++; //go to the next character
+			}
+			i++; //go to the next character
+		}
+
+		if (line[i] == ',') //if comma is it then change storage location to the next component and restart the loop
+		{ 
+			j++;
+			continue;
+		}
+		content[j] += line[i]; //add each character to the components
+	}
+}
